@@ -9,12 +9,12 @@
 \maketitle
 \vskip2cm
 \section*{Abstract}
-In this paper, we propose a 
+We propose a 
 Goodness of Causal Fit (GCF) measure
 which depends 
 on Pearl ``do" interventions.
 This is different
-to a measure of Goodness of Fit (GF),
+from a measure of Goodness of Fit (GF),
 which does not use interventions.
 Given a DAG set  $\calg$,
 to find a good $G\in \calg$,
@@ -42,16 +42,18 @@ and Causal Inference (CI)
 they experience serious doubts
 about the usefulness of this
 theory, because they believe
-finding the underlying model (i.e., DAG)
-for a physical situation is
+finding the underlying model 
+(i.e., DAG)
+for most realistic
+ physical situations is
 too difficult or impossible.
 I think
 that part of the problem
 is that these students
 are assuming, perhaps
 unconsciously,
-that their
-is a unique DAG
+that there exists
+a unique DAG
 that fits Nature perfectly,
 and a mind-boggling number
  of possibilities
@@ -74,10 +76,11 @@ The goal of this paper
 is to propose a GCF measure.
 Such a measure is of course
 not unique,
-and someone may propose a measure better
-than ours in the future.
+and someone may propose 
+in the future a measure that is better
+than ours.
 
-When inventing a GCF measure,
+When designing a GCF measure,
 it is important to keep
 in mind the First Dictum\footnote{
 This is just my whimsical name for it.} of CI: The data is model-less.
@@ -248,7 +251,7 @@ with components $x_i$}
 and a
 probability distribution\footnote{
 Empirical distributions will 
-be denote by $P$ with a tilde over it.}
+be denoted by $P$ with a tilde over it.}
 $\tilde{P}(x.)$
 derived empirically from a dataset,
 let
@@ -316,12 +319,12 @@ our measure of GCF,
 we consider 
 $\calg(G_{pd})=\{G_1, G_2\}$
 given by Fig.\ref{fig-ob-eq-1}.
-We will assume as follows:
+We will assume the following:
 
 \begin{itemize}
 \item
 First, we assume that we have collected
-a dataset from which wee have
+a dataset from which we have
 extracted a full empirical
 distribution
 $\tilde{P}(z, a,b)$.
@@ -512,16 +515,15 @@ consider
 $\calg=\{G_1, G_2, G_3\}$
 given by Fig.\ref{fig-ob-eq-2}.
 
-If we evaluate
-the do-divergences
+Which of the do-divergences
 $D_{\rvx_2}$, $ D_{\rvx_1}$ and $D_{\rvx_3}$,
-their relative
-sizes will be determined
-from the empirical
+is smallest, middle and
+highest, depends on the empirical
 do-probability distributions.
-For instance,
-suppose their
-sizes are ordered as follows:
+For definiteness,
+suppose the
+sizes of these do-divergences
+are related as follows:
 
 
 
@@ -530,13 +532,14 @@ D_{\rvx_2}\leq  D_{\rvx_1} \leq  D_{\rvx_3}
 \;.
 \eeq
 
-Define the distance
+
+For any two do-divergences
+$D_\rva$ and $D_\rvb$,
+define the distance
 \beq
 d_{\rvb,\rva}=
 |D_\rvb-D_\rva|
 \eeq
-for any two do-divergences
-$D_\rva$ and $D_\rvb$.
 
 If we abbreviate $D_{\rvx_j}$ by $D_j$, 
 we can define the GCF for each of
@@ -642,7 +645,7 @@ contains only one DAG,
 define the GCF of that DAG
 to be 1, because all
 arrows are in the right
-direction as far as we know.
+direction, as far as we know.
 We can also
 apply  our GCF measure
 to {\bf composite DAG sets} $\calg$ which equal the
@@ -686,7 +689,7 @@ versus $GF(G)$
 agrees with the spirit of
 the First 
 Dictum and data setmos,
-because in those too,
+because also in those,
 we acknowledge a separation between the
 dataset (GF)  and model (GCF) degrees of freedom.
 
