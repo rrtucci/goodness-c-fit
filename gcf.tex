@@ -416,9 +416,9 @@ $\rva\larrow \rvb$.
 Thus, the arrow and the 
 inequality sign point
  in opposite directions.
-(Alternatively, just remember that
+Alternatively, just remember that
 the arrow points to the larger of 
-the two $D$'s).
+the two $D$'s.
 
 If $D_\rva\leq  D_\rvb$, then define
 $GCF(G_1)=-1$ and $GCF(G_2)=1$.
@@ -587,13 +587,13 @@ Define
 the {\bf edge-sign function} 
 for any $G_i\in\calg$ by
 \beq
-\s_{\rva\rarrow \rvb}(G_i)=
+\s_{G_i}(\rva \text{---}\rvb)=
 \left\{
 \begin{array}{ll}
-+1&\text{ if arrow connecting
-$\rva$ and $\rvb$ in $G_i$
++1&\text{ if edge
+$\rva\text{---}\rvb$ in $G_i$
 points
-from $\rva$ to $\rvb$.}
+towards larger of $D_\rva$ and $D_\rvb$.}
 \\
 -1&\text{ otherwise}
 \end{array}
@@ -617,7 +617,7 @@ $G_i\in \calg$ by
 GCF(G_i)= 
 \frac{
 \sum_{k=0}^{nk-1}
-\s_{\rva_k\rarrow \rvb_k}(G_i)
+\s_{G_i}(\rva_k\text{---}\rvb_k)
 d_{\rva_k, \rvb_k}
 }
 {
