@@ -128,7 +128,7 @@ and returns a PD graph
 $G_{pd}$.
 Given a PD graph $G_{pd}$,
 let $\calg(G_{pd})$
-be a DAG set $\calg$
+be the DAG set $\calg$
 which 
 is generated
 by giving directions to all 
@@ -151,7 +151,11 @@ It's clear that any measure
 of GCF will have to
 involve interventions
 such as the ``do" intervention
-invented by Pearl et al for CI.
+(see 
+Refs. \cite{pearl-2013book}
+and \cite{bayesuvius})
+invented by Pearl et al 
+for CI.
 Without interventions like ``do",
 it is impossible
 to distinguish causally the
@@ -577,15 +581,16 @@ the following formulas.
 For any two do-divergences
 $D_\rva$ and $D_\rvb$,
 define the 
-{\bf do-divergence distance}:
+{\bf do-divergence distance} by
 \beq
 d_{\rvb,\rva}=
 |D_\rvb-D_\rva|
 \;.
 \eeq
-Define 
+For any $G_i\in\calg$,
+define 
 the {\bf edge-sign function} 
-for any $G_i\in\calg$ by
+ by
 \beq
 \s_{G_i}(\rva \text{---}\rvb)=
 \left\{
@@ -625,47 +630,67 @@ d_{\rva_k, \rvb_k}
 d_{\rva_k, \rvb_k}
 }
 \;.
+\label{eq-rel-gfc}
 \eeq
 Note that
 $-1\leq GCF(G_i)  \leq 1$.
 
-
-
-So far, we 
-have applied our measure of
-GCF to DAG sets $\calg$
-which are 
-either fully or
-partially generated
-by a PD graph $G_{pd}$.
 If the DAG set $\calg$ 
 contains only one DAG $G$,
 define $GCF(G)=1$, because all
 arrows in $G$ are in the correct
 direction, as far as we know.
-We can also
-apply  our GCF measure
-to {\bf composite DAG sets} $\calg$ which equal the
-union of either
-fully or
-partially 
-generated DAG sets,
-and singleton sets 
-which contain
-only one DAG.
 
+Call the  
+{\bf skeleton} of a DAG, the undirected
+graph that one obtains
+by turning
+all its edges from directed 
+to undirected ones.
+
+So far, we 
+have applied our measure of
+GCF to a DAG set $\calg$
+which is
+either fully or
+partially generated
+by a PD graph $G_{pd}$,
+or is a singleton set.
+But what if we want a GCF
+that can score every DAG
+in a  DAG set
+$\calg$ that contains
+DAGs with different skeletons?
+In that case, 
+let $\{\rva_k\text{---}
+\rvb_k\}_{k=0,1, \ldots, nk-1}$
+be {\it all} the edges
+of graph $G_i\in \calg$,
+and use the relative GCF
+given by Eq.(\ref{eq-rel-gfc}), 
+or use  an absolute 
+GCF defined by
+
+\beq
+GCF_a(G_i)= 
+\sum_{k=0}^{nk-1}
+\s_{G_i}(\rva_k\text{---}\rvb_k)
+d_{\rva_k, \rvb_k}
+\;.
+\eeq
 
 So let $\calg$
-be a composite DAG set.
-Our GCF measure
+be an arbitrary DAG set.
+Our GCF (or $GCF_a$) measure
 is not enough to
 decide the best 
 possible $G$ in $\calg$,
 because there might 
-be several graphs with $GCF=1$.
+be several graphs with 
+$GCF\approx 1$.
 For this reason,
 we recommend
-plotting $GCF(G)$
+plotting $GCF(G)$ (or $GCF_a$)
 versus $GF(G)$
 for all $G\in\calg$.
 Then  choose a $G$ with a
