@@ -82,16 +82,16 @@ than ours.
 
 When designing a GCF measure,
 it is important to keep
-in mind the First Dictum\footnote{
+in mind the First Axiom\footnote{
 This is just my whimsical name for it.} of CI: The data is model-less.
- In the First Dictum,
+ In the First Axiom,
 when we say ``data", we are referring to what is commonly
  called a dataset. A dataset is a table of data, where all
  the entries of each column have the same units, and 
 measure a single feature, and each row refers to one
  particular sample or individual. Datasets are particularly 
 useful for estimating probability distributions and for 
-training neural nets. In the First Dictum, when we say ``model", we are 
+training neural nets. In the First Axiom, when we say ``model", we are 
 referring to a DAG (directed acyclic graph) or a bnet
  (Bayesian Network= DAG + probability table 
 for each node of DAG).
@@ -112,7 +112,7 @@ So it often fails to fully specify a DAG model.
 
 Let's call the ordered pair (dataset, model) a 
 {\bf dataset++}.
- Then what the First Dictum is saying is that a dataset 
+ Then what the First Axiom is saying is that a dataset 
 is model-free or model-less (although sometimes one can 
 find a partial model hidden in there). 
 A dataset is not a dataset++.
@@ -511,7 +511,7 @@ equivalent (OE) graphs.
 These are graphs that have the
 same value for GF, and
 are therefore indistinguishable
-from GF alone. For more info about 
+by means of GF alone. For more info about 
 OE graphs, see Chapter
 entitled ``Observationally Equivalent DAGs"
 in Ref.\cite{bayesuvius}.
@@ -554,7 +554,8 @@ d_{\rvb,\rva}=
 |H_\rvb-H_\rva|
 \eeq
 
-If we abbreviate $H_{\rvx_j}$ by $D_j$, 
+If we abbreviate $\rvx_j$ by $j$
+when used as a subscript, 
 we can define the GCF for each of
 the graphs in $\calg$ by:
 
@@ -588,7 +589,7 @@ GCF(G_3)=
 \section{GCF in general}
 Eqs.(\ref{eq-gcf-example2})
 are a special case of
-the following formulas.
+the following formulae.
 
 For any two hospitalities
 $H_\rva$ and $H_\rvb$,
@@ -601,10 +602,10 @@ d_{\rvb,\rva}=
 \eeq
 For any $G_i\in\calg$,
 define 
-the {\bf edge-sign function} 
+the {\bf edge reward function} 
  by
 \beq
-\s_{G_i}(\rva \text{---}\rvb)=
+\rho_{G_i}(\rva \text{---}\rvb)=
 \left\{
 \begin{array}{ll}
 +1&\text{ if edge
@@ -634,7 +635,7 @@ $G_i\in \calg$ by
 GCF(G_i)= 
 \frac{
 \sum_{k=0}^{nk-1}
-\s_{G_i}(\rva_k\text{---}\rvb_k)
+\rho_{G_i}(\rva_k\text{---}\rvb_k)
 d_{\rva_k, \rvb_k}
 }
 {
@@ -650,14 +651,15 @@ $-1\leq GCF(G_i)  \leq 1$.
 If the DAG set $\calg$ 
 contains only one DAG $G$,
 define $GCF(G)=1$, because all
-arrows in $G$ are in the correct
-direction, as far as we know.
+directions of 
+arrows in $G$ are know.
 
-Call the  
-{\bf skeleton} of a DAG, the undirected
-graph that one obtains
+Call an undirected graph a {\bf frame}
+and define the
+{\bf frame of a DAG}
+to be the frame that one obtains
 by turning
-all its edges from directed 
+all the edges of the DAG from directed 
 to undirected ones.
 
 So far, we 
@@ -672,28 +674,58 @@ But what if we want a GCF
 that can score every DAG
 in a  DAG set
 $\calg$ that contains
-DAGs with different skeletons?
+DAGs with different frames
+but the same nodes?
 In that case, 
-let $\{\rva_k\text{---}
-\rvb_k\}_{k=0,1, \ldots, nk-1}$
-be {\it all} the edges
-of graph $G_i\in \calg$,
-and use the relative GCF
-given by Eq.(\ref{eq-rel-gfc}), 
-or use  an absolute 
-GCF defined by
+let $F$
+be the frame
+which 
+is the union of 
+all edges in all $G\in \calg$.
+For each edge $\rva\text{---}\rvb$ of $F$,
+if all the $G\in \calg$
+give the same direction
+to that edge, then give that direction
+to that edge in $F$.
+After doing this for
+all edges of $F$,
+call $G_{pd} $ the resulting 
+PD graph.
+Modify each $G\in \calg$
+by adding to it undirected edges
+that occur in $G_{pd}$
+but not in $G$.
+At this point,
+we have reduced our
+seemingly more 
+complicated problem
+to the original one
+in which $\calg$
+is an incompletely 
+generated set of $G_{pd}$.
 
-\beq
-GCF_a(G_i)= 
-\sum_{k=0}^{nk-1}
-\s_{G_i}(\rva_k\text{---}\rvb_k)
-d_{\rva_k, \rvb_k}
-\;.
-\eeq
+
+
+%let $\{\rva_k\text{---}
+%\rvb_k\}_{k=0,1, \ldots, nk-1}$
+%be {\it all} the edges
+%of graph $G_i\in \calg$,
+%and use the relative GCF
+%given by Eq.(\ref{eq-rel-gfc}), 
+%or use  an absolute 
+%GCF defined by
+%
+%\beq
+%GCF_{abs}(G_i)= 
+%\sum_{k=0}^{nk-1}
+%\rho_{G_i}(\rva_k\text{---}\rvb_k)
+%d_{\rva_k, \rvb_k}
+%\;.
+%\eeq
 
 So let $\calg$
 be an arbitrary DAG set.
-Our GCF (or $GCF_a$) measure
+Our GCF  measure
 is not enough to
 decide the best 
 possible $G$ in $\calg$,
@@ -702,7 +734,7 @@ be several graphs with
 $GCF\approx 1$.
 For this reason,
 we recommend
-plotting $GCF(G)$ (or $GCF_a(G)$)
+plotting $GCF(G)$ 
 versus $GF(G)$
 for all $G\in\calg$.
 Then  choose a $G$ with a
@@ -716,13 +748,12 @@ types of goodness.
 This would be similar to  averaging
 over an ensemble of decision trees to get 
 a random forest.
-
 A plot of 
 $GCF(G)$
 versus $GF(G)$
 agrees with the spirit of
 the First 
-Dictum and data setmos,
+Axiom and dataset++s,
 because also in those,
 we acknowledge a separation between the
 dataset (GF)  and model (GCF) degrees of freedom.
