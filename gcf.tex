@@ -16,7 +16,8 @@ on Pearl ``do" interventions.
 This is different
 from a measure of Goodness of Fit (GF),
 which does not use interventions.
-Given a DAG set  ${\cal G}$,
+Given a set ${\cal G}$
+of DAGs with the same nodes,
 to find a good $G\in {\cal G}$,
 we propose plotting
 $GCF(G)$ versus $GF(G)$
@@ -693,14 +694,21 @@ all edges of $F$,
 call $G_{pd} $ the resulting 
 PD graph.
 Modify each $G\in \calg$
-by adding to it undirected edges
+by adding to it the undirected edges
 that occur in $G_{pd}$
 but not in $G$.
+The new $G$, call it $G_{mod}(G)$,
+is PD. Remove $G$ from $\calg$
+and add to $\calg$
+the elements of
+the maximal generation $\calg_{max}(G_{mod}(G))$.
 At this point,
 we have reduced our
 seemingly more 
-complicated problem
-to the original one
+complicated situation
+where $\calg$ contains
+different frames with the same nodes
+to the original situation
 in which $\calg$
 is a non-maximal 
 generation of $G_{pd}$.
@@ -708,7 +716,8 @@ generation of $G_{pd}$.
 
 
 So let $\calg$
-be an arbitrary DAG set.
+be an arbitrary set of
+DAGs with the same nodes.
 Our GCF  measure
 is not enough to
 decide the best 
