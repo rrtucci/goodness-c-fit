@@ -12,7 +12,7 @@
 We propose a 
 Goodness of Causal Fit (GCF) measure
 which depends 
-on Pearl ``do" interventions.
+on Judea Pearl's ``do" interventions.
 This is different
 from a measure of Goodness of Fit (GF),
 which does not use interventions.
@@ -70,7 +70,7 @@ each DAG in $\calg$,
  a measure called 
 Goodness of Causal Fit (GCF).
 Then use the DAGs with
-the highest GCF scores.
+ high GCF scores.
 
 
 The goal of this paper
@@ -84,38 +84,37 @@ than ours.
 When designing a GCF measure,
 it is important to keep
 in mind the First Axiom\footnote{
-This is just my whimsical name for it.} of CI: The data is model-less.
+This is just my whimsical name for it.} of CI: A dataset is causal model-free.
  In the First Axiom,
-when we say ``data", we are referring to what is commonly
- called a dataset. A dataset is a table of data, where all
+when we say a ``dataset", we are referring to  a table of data, where all
  the entries of each column have the same units, and 
 measure a single feature, and each row refers to one
  particular sample or individual. Datasets are particularly 
 useful for estimating probability distributions and for 
-training neural nets. In the First Axiom, when we say ``model", we are 
+training neural nets. In the First Axiom, when we say ``causal model", we are 
 referring to a DAG (directed acyclic graph) or a bnet
  (Bayesian Network= DAG + probability table 
 for each node of DAG).
 
-You can try to derive a model from a dataset, 
+You can try to derive a causal model from a dataset, 
 but you'll soon find out that you can only go so far.
-The process of finding a {\it partial} model from a dataset 
+The process of finding a {\it partial} causal model from a dataset 
 is called structure learning (SL).  SL can be done quite
  nicely with Marco Scutari's open source program 
 {\tt bnlearn} (Ref\cite{bnlearn}).
 The problem is that SL often cannot 
-narrow down the model to a single one. It finds an undirected graph (UG), 
+narrow down the causal model to a single one. It finds an undirected graph (UG), 
 and it can determine the direction of some of the arrows in the UG, 
 but it is often incapable, for well understood 
 fundamental ---not just technical--- reasons,
  of finding the direction of {\it all}  the arrows of the UG. 
-So it often fails to fully specify a DAG model.
+So it often fails to fully specify a DAG.
 
-Let's call the ordered pair (dataset, model) a 
+Let's call the ordered pair (dataset, causal model) a 
 {\bf dataset++}.
  Then what the First Axiom is saying is that a dataset 
-is model-free or model-less (although sometimes one can 
-find a partial model hidden in there). 
+is causal model-free or model-less (although sometimes one can 
+find a partial causal model hidden in there). 
 A dataset is not a dataset++.
 
 Graphs
@@ -139,14 +138,13 @@ We will refer to the
 DAG set
  $\calg_{max}(G_{pd})$ as the
  {\bf maximal generation of $G_{pd}$}
-and to any subset of
+and to any subset $\calg(G_{pd})$ of
 $\calg_{max}(G_{pd})$ as a {\bf non-maximal 
 generation of $G_{pd}$.}
 Once we define below our
  GCF measure,
-we will apply it to
-sets of the type $\calg(G_{pd})$
-as an example.
+we will evaluate it for the DAGs of 
+non-maximal generation $\calg(G_{pg})$.
 
 
 It's clear that any measure
@@ -156,15 +154,16 @@ such as the ``do" intervention
 (see 
 Refs. \cite{pearl-2013book}
 and \cite{bayesuvius})
-invented by Pearl et al 
+invented by Judea Pearl et al 
 for CI.
 Without interventions like ``do",
-it is impossible
+it might be impossible
 to distinguish causally the
 DAGs in a set $\calg(G_{pd})$.
 
 Henceforth, random variables
-will be indicated by underlining.
+will be indicated by underlining,
+as is done in Ref.\cite{bayesuvius}.
 
 \section{Goodness of Fit}
 Before trying to
@@ -207,7 +206,7 @@ PO(x)\ln \frac{PO(x)}{PE(x)}
 \item
 The
 {\bf Pearson divergence}
-(aka {\bf Pearson Chi-squared test statistic}):
+(a.k.a. {\bf Pearson Chi-squared test statistic}):
 \beq
 D_{\chi^2}(PO\parallel PE)=
 \sum_{x\in S_\rvx}
@@ -306,8 +305,9 @@ G_{pd}&G_1&G_2
 \end{array}
 $$
 \caption{$\calg(G_{pd})=\{G_1, G_2\}$.
-The partially directed graph $G_{pd}$
-generates the DAGs $G_1$ and $G_2$
+From the partially directed graph $G_{pd}$,
+one can
+generate the DAGs $G_1$ and $G_2$
 by giving directions to
 all undirected edges of $G_{pd}$
 in
@@ -517,10 +517,12 @@ by means of GF alone. For more info about
 OE graphs, see Chapter
 entitled ``Observationally Equivalent DAGs"
 in Ref.\cite{bayesuvius}.
-Note that $\calg(G_{pd})$
+Note that $\calg_{max}(G_{pd})$
 includes one more DAG,
 the one in which node $\rvx_1$
-is a collider.}
+is a collider.
+Hence $\calg$
+is a non-maximal generation of $G_{pd}$.}
 \label{fig-ob-eq-2}
 \end{figure}
 
@@ -532,7 +534,7 @@ given by Fig.\ref{fig-ob-eq-2}.
 
 Which of the hospitalities
 $H_{\rvx_2}$, $ H_{\rvx_1}$ and $H_{\rvx_3}$,
-is smallest, middle and
+is smallest, intermediate and
 highest, depends on the empirical
 do-probability distributions.
 For definiteness,
@@ -613,7 +615,7 @@ the {\bf edge reward function}
 +1&\text{ if edge
 $\rva\text{---}\rvb$ in $G_i$
 points
-towards larger of $H_\rva$ and $H_\rvb$.}
+towards the larger of $H_\rva$ and $H_\rvb$.}
 \\
 -1&\text{ otherwise}
 \end{array}
@@ -654,7 +656,7 @@ If the DAG set $\calg$
 contains only one DAG $G$,
 define $GCF(G)=1$, because all
 directions of 
-arrows in $G$ are know.
+arrows in $G$ are known.
 
 Call an undirected graph a {\bf frame}
 and define the
@@ -749,7 +751,7 @@ the First
 Axiom and dataset++s,
 because also in those,
 we acknowledge a separation between the
-dataset (GF)  and model (GCF) degrees of freedom.
+dataset  and causal model degrees of freedom.
 
 \bibliographystyle{plain}
 \bibliography{references}
