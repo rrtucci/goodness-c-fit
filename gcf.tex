@@ -14,8 +14,8 @@ Goodness of Causal Fit (GCF) measure
 which depends 
 on Judea Pearl's ``do" interventions.
 This is different
-from a measure of Goodness of Fit (GF),
-which does not use interventions.
+from Goodness of Fit (GF) measures,
+which do not use interventions.
 Given a set ${\cal G}$
 of DAGs with the same nodes,
 to find a good $G\in {\cal G}$,
@@ -48,7 +48,7 @@ finding the underlying model
 for most realistic
  physical situations is
 too difficult or impossible.
-I think
+I believe
 that part of the problem
 is that these students
 are assuming, perhaps
@@ -69,31 +69,60 @@ and to calculate for
 each DAG in $\calg$,
  a measure called 
 Goodness of Causal Fit (GCF).
-Then use the DAGs with
- high GCF scores.
+Then use a DAG with
+ a high GCF score.
+ 
+ The goal of this paper
+ is to propose a GCF measure.
+ Such a measure is of course
+ not unique,
+ and someone may propose 
+ in the future a measure that is better
+ than ours.
+ 
+ 
+ It's clear that any measure
+ of GCF will have to
+ involve interventions
+ such as the ``do" intervention
+ (see 
+ Refs. \cite{pearl-2013book}
+ and \cite{bayesuvius})
+ invented by Judea Pearl et al.
+ Without interventions like ``do",
+ it might be impossible
+ to distinguish which DAG
+ of a set is the best causal fit.
+ For example, the family of triangular
+ bnets can 
+ all represent the same
+ probability distribution
+ because they are fully connected.
+Hence, from the 
+probability distribution of the
+triangular bnet alone,
+it is impossible to decide
+which bnet in the family is
+the best causal fit for the
+physical situation 
+being considered.
 
 
-The goal of this paper
-is to propose a GCF measure.
-Such a measure is of course
-not unique,
-and someone may propose 
-in the future a measure that is better
-than ours.
+
 
 When designing a GCF measure,
 it is important to keep
-in mind the First Axiom\footnote{
+in mind the Data Axiom\footnote{
 This is just my whimsical name for it.} of CI: A dataset is causal model-free.
- In the First Axiom,
+ In the Data Axiom,
 when we say a ``dataset", we are referring to  a table of data, where all
  the entries of each column have the same units, and 
 measure a single feature, and each row refers to one
  particular sample or individual. Datasets are particularly 
 useful for estimating probability distributions and for 
-training neural nets. In the First Axiom, when we say ``causal model", we are 
+training neural nets. In the Data Axiom, when we say ``causal model", we are 
 referring to a DAG (directed acyclic graph) or a bnet
- (Bayesian Network= DAG + probability table 
+ (bnet= DAG + probability table 
 for each node of DAG).
 
 You can try to derive a causal model from a dataset, 
@@ -112,7 +141,7 @@ So it often fails to fully specify a DAG.
 
 Let's call the ordered pair (dataset, causal model) a 
 {\bf dataset++}.
- Then what the First Axiom is saying is that a dataset 
+ Then what the Data Axiom is saying is that a dataset 
 is causal model-free or model-less (although sometimes one can 
 find a partial causal model hidden in there). 
 A dataset is not a dataset++.
@@ -147,19 +176,7 @@ we will evaluate it for the DAGs of
 non-maximal generation $\calg(G_{pg})$.
 
 
-It's clear that any measure
-of GCF will have to
-involve interventions
-such as the ``do" intervention
-(see 
-Refs. \cite{pearl-2013book}
-and \cite{bayesuvius})
-invented by Judea Pearl et al 
-for CI.
-Without interventions like ``do",
-it might be impossible
-to distinguish causally the
-DAGs in a set $\calg(G_{pd})$.
+
 
 Henceforth, random variables
 will be indicated by underlining,
@@ -318,7 +335,7 @@ undirected edge in $G_{pd}$.) }
 \end{figure}
 
 For the first example of
-our measure of GCF,
+our GCF measure,
 we consider 
 $\calg(G_{pd})=\{G_1, G_2\}$
 given by Fig.\ref{fig-ob-eq-1}.
@@ -406,7 +423,7 @@ if node $\rvx$ has no incoming
 arrows (i.e., 
 is ``inhospitable"), and becomes 
 positive if node $\rvx$
-does admit some incoming arrows
+does have some incoming arrows
 (i.e., is ``hospitable").
 
 
@@ -420,7 +437,7 @@ H_a=0
 \leq H_\rvb
 \eeq
 and
-whereas if the truth is
+if the truth is
  $G_1$ with $\rvb\rarrow \rva$, then
 
 \beq
@@ -527,7 +544,7 @@ is a non-maximal generation of $G_{pd}$.}
 \end{figure}
 
 For the second example of
-our measure of GCF,
+our GCF measure,
 consider 
 $\calg=\{G_1, G_2, G_3\}$
 given by Fig.\ref{fig-ob-eq-2}.
@@ -667,8 +684,8 @@ all the edges of the DAG from directed
 to undirected ones.
 
 So far, we 
-have applied our measure of
-GCF to a DAG set $\calg$
+have applied our GFC measure
+ to a DAG set $\calg$
 which is
 either a maximal or 
 non-maximal generation
@@ -735,23 +752,17 @@ for all $G\in\calg$.
 Then  choose a $G$ with a
 large amount
 of both types of goodness.
-It might even be
-advantageous to average over
-a small subset of DAGs in  $\calg$
-that have large amounts of both
-types of goodness.
-This would be similar to  averaging
-over an ensemble of decision trees to get 
-a random forest.
 A plot of 
 $GCF(G)$
 versus $GF(G)$
 agrees with the spirit of
-the First 
-Axiom and dataset++s,
-because also in those,
-we acknowledge a separation between the
-dataset  and causal model degrees of freedom.
+the Data 
+Axiom,
+because in that axiom 
+we also acknowledge a separation between the
+degrees of freedom of the
+dataset  and 
+those of the causal model.
 
 \bibliographystyle{plain}
 \bibliography{references}
