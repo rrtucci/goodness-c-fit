@@ -569,10 +569,10 @@ H_{\rvx_2}\leq  H_{\rvx_1} \leq  H_{\rvx_3}
 
 For any two hospitalities
 $H_\rva$ and $H_\rvb$,
-define the distance
+let
 \beq
 d_{\rvb,\rva}=
-|H_\rvb-H_\rva|
+\max(H_\rvb, H_\rva)
 \eeq
 
 If we abbreviate $\rvx_j$ by $j$
@@ -614,13 +614,18 @@ the following formulae.
 
 For any two hospitalities
 $H_\rva$ and $H_\rvb$,
-define the 
-{\bf hospitality distance} by
+let
 \beq
 d_{\rvb,\rva}=
-|H_\rvb-H_\rva|
+\max(H_\rvb, H_\rva)
 \;.
 \eeq
+Note that $d_{\rvb,\rva}=0$
+iff $H_\rvb= H_\rva=0$,
+which in turn is true iff
+there is no arrow between $\rva$
+and $\rvb$.
+
 For any $G_i\in\calg$,
 define 
 the {\bf edge reward function} 
@@ -638,7 +643,8 @@ towards the larger of $H_\rva$ and $H_\rvb$.}
 \end{array}
 \right.
 \eeq
-Finally, suppose that
+
+Now suppose that
 $\calg$
 is either a maximal
 or non-maximal
