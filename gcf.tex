@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \input{bayesuvius.sty}
+\newcommand{\tilP}[0]{\tilde{P}}
 
 \begin{document}
 \title{Goodness of Causal Fit}
@@ -271,7 +272,7 @@ and a
 probability distribution\footnote{
 Empirical distributions will 
 be denoted by $P$ with a tilde over it.}
-$\tilde{P}(x.)$
+$\tilP(x.)$
 derived empirically from a dataset,
 let
 
@@ -279,13 +280,13 @@ let
 D(G)
 &=&
 \sum_{x.}
-\tilde{P}(x.)\ln 
-\frac{\tilde{P}(x.)}
+\tilP(x.)\ln 
+\frac{\tilP(x.)}
 {P_{G}(x.)}
 \\
 &=&
 D_{KL}(
-\tilde{P}(\rvx.)\parallel P_{G}(\rvx.))
+\tilP(\rvx.)\parallel P_{G}(\rvx.))
 \eeqa
 We define {\bf Goodness of Fit (GF)}
 of the bnet $G$ by
@@ -294,6 +295,7 @@ of the bnet $G$ by
 GF(G)=\ln \frac{1}
 {D(G)}
 \eeq
+
 
 \section{GCF example 1}
 
@@ -347,13 +349,13 @@ First, we assume that we have collected
 a dataset from which we have
 extracted a full empirical
 distribution
-$\tilde{P}(z, a,b)$.
-From $\tilde{P}(z, a,b)$,
+$\tilP(z, a,b)$.
+From $\tilP(z, a,b)$,
 we assume that the following
 have been calculated.
-$\tilde{P}(z,b|a)$
-$\tilde{P}(z, a|b)$
-$\tilde{P}(a)$, $\tilde{P}(b)$.
+$\tilP(z,b|a)$
+$\tilP(z, a|b)$
+$\tilP(a)$, $\tilP(b)$.
 \item
 Second, we assume that a
 dataset has been collected
@@ -363,7 +365,7 @@ the possible values
 $a\in S_\rva$ of $\rva$.
 Furthemore, we assume
 that the distribution
-$\tilde{P}(z, b|do(\rva)=a)$
+$\tilP(z, b|do(\rva)=a)$
 has been calculated from that dataset.
 \item
 Third, we assume that a
@@ -374,47 +376,47 @@ the possible values
 $b\in S_\rvb$ of $\rvb$.
 Furthemore, we assume that
 the distribution
-$\tilde{P}(z, a|do(\rvb)=b)$
+$\tilP(z, a|do(\rvb)=b)$
 has been calculated
 from that dataset.
 \end{itemize}
 We will refer to
-$\tilde{P}(z, b|do(\rva)=a)$
+$\tilP(z, b|do(\rva)=a)$
 and 
-$\tilde{P}(z, a|do(\rvb)=b)$
+$\tilP(z, a|do(\rvb)=b)$
 as {\bf empirical do-probabiity distributions}.
 
 
 Now define
 \beqa
-H_a&=&
-\sum_{z,b}\tilde{P}(z,b|a)
+h_a&=&
+\sum_{z,b}\tilP(z,b|a)
 \ln
-\frac{\tilde{P}(z,b|a)}
-{\tilde{P}(z,b|do(\rva)=a)}
+\frac{\tilP(z,b|a)}
+{\tilP(z,b|do(\rva)=a)}
 \\
-&=&D_{KL}(\tilde{P}(\rvz, \rvb|a)
-\parallel \tilde{P}(\rvz, \rvb|do(\rva)=a))
+&=&D_{KL}(\tilP(\rvz, \rvb|a)
+\parallel \tilP(\rvz, \rvb|do(\rva)=a))
 \\
-H_\rva &=& \sum_a \tilde{P}(a) H_a
-\\&=& E_a[H_a]
+h_\rva &=& \sum_a \tilP(a) h_a
+\\&=& E_a[h_a]
 \eeqa
 and
 
 \beqa
-H_b
+h_b
 &=&
-D_{KL}(\tilde{P}(\rvz, \rva|b)
-\parallel \tilde{P}(\rvz, \rva|do(\rvb)=b))
+D_{KL}(\tilP(\rvz, \rva|b)
+\parallel \tilP(\rvz, \rva|do(\rvb)=b))
 \\
-H_\rvb 
+h_\rvb 
 &=&
-\sum_a \tilde{P}(b) H_b
-\\&=& E_b[H_b]
+\sum_a \tilP(b) h_b
+\\&=& E_b[h_b]
 \;.
 \eeqa
 We will
-refer to $H_\rvx$ for any node $\rvx$
+refer to $h_\rvx$ for any node $\rvx$
 as a {\bf hospitality}.
 Note that the 
 hospitality for node 
@@ -425,26 +427,29 @@ is ``inhospitable"), and becomes
 positive if node $\rvx$
 does have some incoming arrows
 (i.e., is ``hospitable").
+Note  $h_\rvb= h_\rva=0$ iff
+there is no arrow between $\rva$
+and $\rvb$.
 
 
 Note that 
 if the truth is $G_2$ with $\rva\rarrow \rvb$,
 then
 \beq
-H_a=0
+h_a=0
 \text{ for all $a$ so }
-\underbrace{H_\rva}_0
-\leq H_\rvb
+\underbrace{h_\rva}_0
+\leq h_\rvb
 \eeq
 and
 if the truth is
  $G_1$ with $\rvb\rarrow \rva$, then
 
 \beq
-H_b=0
+h_b=0
 \text{ for all $b$ so }
-H_\rva\geq 
-\underbrace{H_\rvb}_0
+h_\rva\geq 
+\underbrace{h_\rvb}_0
 \;.
 \eeq
 Hence, 
@@ -455,10 +460,10 @@ the larger of the 2 hospitalities
 (i.e., the arrow ``seeks the most hospitable
 node")
 
-If $H_\rva\leq  H_\rvb$, then define
+If $h_\rva\leq  h_\rvb$, then define
 $GCF(G_1)=-1$ and $GCF(G_2)=+1$.
 
-If $H_\rvb\leq  H_\rva$, then define
+If $h_\rvb\leq  h_\rva$, then define
 $GCF(G_1)=+1$ and $GCF(G_2)=-1$.
 
 
@@ -550,7 +555,7 @@ $\calg=\{G_1, G_2, G_3\}$
 given by Fig.\ref{fig-ob-eq-2}.
 
 Which of the hospitalities
-$H_{\rvx_2}$, $ H_{\rvx_1}$ and $H_{\rvx_3}$,
+$h_{\rvx_2}$, $ h_{\rvx_1}$ and $h_{\rvx_3}$,
 is smallest, intermediate and
 highest, depends on the empirical
 do-probability distributions.
@@ -562,17 +567,17 @@ are related as follows:
 
 
 \beq
-H_{\rvx_2}\leq  H_{\rvx_1} \leq  H_{\rvx_3}
+h_{\rvx_2}\leq  h_{\rvx_1} \leq  h_{\rvx_3}
 \;.
 \eeq
 
 
 For any two hospitalities
-$H_\rva$ and $H_\rvb$,
+$h_\rva$ and $h_\rvb$,
 let
 \beq
 d_{\rvb,\rva}=
-\max(H_\rvb, H_\rva)
+|h_\rvb-h_\rva|
 \eeq
 
 If we abbreviate $\rvx_j$ by $j$
@@ -608,23 +613,55 @@ GCF(G_3)=
 \end{subequations}
 
 \section{GCF in general}
-Eqs.(\ref{eq-gcf-example2})
-are a special case of
-the following formulae.
+Suppose $G_i\in\calg$,
+where $\calg$ is a non-maximal generation
+of $G_{pd}$.
+In that case,
+we define a GFC measure
+as follows.
+Note that the
+following definition generalizes
+the definition of GFC measure 
+that was used in the 2
+special cases that
+we have considered so far.
+
+For any 
+bnet 
+$G_i\in\calg$
+with a node $\rva$,
+and such that $\rva^c$ are all 
+nodes of $G_i$ other than $\rva$,
+define the {\bf hospitality} $h_\rva$ by
+
+\beqa
+h_a&=&
+\sum_{a^c}\tilP(a^c|a)
+\ln
+\frac{\tilP(a^c|a)}
+{\tilP(a^c|do(\rva)=a)}
+\\
+&=&D_{KL}(\tilP(\rva^c|a)
+\parallel \tilP(\rva^c|do(\rva)=a))
+\\
+h_\rva &=& \sum_a \tilP(a) h_a
+\\&=& E_a[h_a]
+\eeqa
 
 For any two hospitalities
-$H_\rva$ and $H_\rvb$,
-let
+$h_\rva$ and $h_\rvb$,
+define the {\bf hospitality distance} by
 \beq
 d_{\rvb,\rva}=
-\max(H_\rvb, H_\rva)
-\;.
+|h_\rvb-h_\rva|
 \eeq
 Note that $d_{\rvb,\rva}=0$
-iff $H_\rvb= H_\rva=0$,
-which in turn is true iff
-there is no arrow between $\rva$
-and $\rvb$.
+iff $h_\rva=h_\rvb$.
+See Appendix A for a proof that
+if $h_\rva=h_\rvb$ and
+there is no fine tuning, then
+there is no arrow between
+$\rva$ and $\rvb$.
 
 For any $G_i\in\calg$,
 define 
@@ -637,7 +674,7 @@ the {\bf edge reward function}
 +1&\text{ if edge
 $\rva\text{---}\rvb$ in $G_i$
 points
-towards the larger of $H_\rva$ and $H_\rvb$.}
+towards the larger of $h_\rva$ and $h_\rvb$.}
 \\
 -1&\text{ otherwise}
 \end{array}
@@ -769,6 +806,103 @@ we also acknowledge a separation between the
 degrees of freedom of the
 dataset  and 
 those of the causal model.
+
+\appendix
+
+\section{Appendix}
+
+\begin{figure}[h!]
+$$
+\xymatrix{
+&\rvn\ar[ld]\ar[rd]\ar[dd]
+\\
+\rva\ar[rd]
+&&\rvb\ar[ll]
+\ar[ld]
+\\
+&
+\rvs
+}
+$$
+\caption{Bnet used 
+to prove Claim \ref{cl-ha-hb}.
+The proof is also valid if the
+direction of
+arrow $\rvn\rarrow\rvs$
+is reversed. }
+\label{fig-ha-hb}
+\end{figure} 
+
+
+\begin{claim}\label{cl-ha-hb}
+Suppose $\rva, \rvb$ 
+are any two nodes of
+a bnet $G_i$. Then
+\begin{enumerate}[(a)]
+\item
+$h_\rvb= h_\rva$ implies
+$h_\rvb= h_\rva=0$
+or bnet $G_i$ obeys the following {\bf fine tuning}
+equations.
+\beq
+\left
+\{
+\begin{array}{l}
+H(\rva|\rvb, \rvn) =
+H(\rvb|\rvn)
+\\
+\text{$h_\rvb= h_\rva=0$ is false}
+\end{array}\right.
+\eeq
+where the $H(\cdot|\cdot)$ are
+ conditional entropies
+and node $\rvn$ is defined in
+Fig.\ref{fig-ha-hb}.
+\item
+$h_\rvb= h_\rva=0$ implies
+$\rva$ and $\rvb$ are both root nodes and
+there is no arrow between $\rva$
+and $\rvb$.
+\end{enumerate}
+\end{claim}
+\proof
+$(b)$ is obvious.
+
+To prove $(a)$,
+consider Fig.\ref{fig-ha-hb}.
+In that figure, $\rvn$ and $\rvs$
+might each represent multiple nodes
+of $G_i$.
+Let $\rvx$ denote all the nodes
+of $G_i$.
+Note that 
+
+\beqa
+h_\rva &=& \sum_{x}\tilP(x) 
+\ln \frac{\tilP(a^c|a)}{\tilP(a^c|do(\rva)=a)}
+\\
+&=&
+\sum_{x}\tilP(x) 
+\ln \tilP(a|b,n)
+\\
+&=&
+-H(\rva|\rvb,\rvn )
+\eeqa
+
+\beqa
+h_\rvb &=& \sum_{x}\tilP(x) 
+\ln \frac{\tilP(b^c|b)}{\tilP(b^c|do(\rvb)=b)}
+\\
+&=&
+\sum_{x}\tilP(x) 
+\ln \tilP(b|n)
+\\
+&=&
+-H(\rvb|\rvn)
+\eeqa
+\qed
+
+
 
 \bibliographystyle{plain}
 \bibliography{references}
