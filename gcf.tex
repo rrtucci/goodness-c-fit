@@ -421,7 +421,7 @@ D_{KL}(\tilP(\rva|\cald\rvb=b)
 \eeqa
 We will
 refer to $\calh_\rvx$ for any node $\rvx$
-as a {\bf hospitality}.
+as the {\bf hospitality of node $\rvx$}.
 Note that the 
 hospitality for node 
 $\rvx$ is zero
@@ -431,9 +431,6 @@ is ``inhospitable"), and becomes
 positive if node $\rvx$
 does have some incoming arrows
 (i.e., is ``hospitable").
-Note  $\calh_\rvb^\linkab= \calh_\rva^\linkab=0$ iff
-there is no arrow between $\rva$
-and $\rvb$.
 
 
 Note that 
@@ -537,7 +534,8 @@ $$
 $\calg$ is a set of observationally
 equivalent (OE) graphs. 
 These are graphs that have the
-same value for GF, and
+same full
+probability distribution, and
 are therefore indistinguishable
 by means of GF alone. For more info about 
 OE graphs, see Chapter
@@ -588,8 +586,7 @@ d_{\rvb,\rva}=
 |\calh_\rvb^\linkab-\calh_\rva^\linkab|
 \eeq
 
-If we abbreviate $\rvx_j$ by $j$
-when used as a subscript, 
+If we abbreviate $\rvx_j$ by $j$, 
 we can define the GCF for each of
 the graphs in $\calg$ by:
 
@@ -637,8 +634,8 @@ we have considered so far.
 For any 
 bnet 
 $G_i\in\calg$
-with a nodes $\rva$ and $\rvb$,
-define the {\bf hospitality} by
+with nodes $\rva$ and $\rvb$,
+define the {\bf hospitality of node $\rvb$} by
 
 \beqa
 \calh_b^\linkab
@@ -718,9 +715,9 @@ $-1\leq GCF(G_i)  \leq 1$.
 
 If the DAG set $\calg$ 
 contains only one DAG $G$,
-define $GCF(G)=1$, because all
+define $GCF(G)=1$, because the
 directions of 
-arrows in $G$ are known.
+all arrows in $G$ are known.
 
 Call an undirected graph a {\bf frame}
 and define the
@@ -858,15 +855,25 @@ is reversed. }
 Suppose $\rva, \rvb$ 
 are any two nodes of
 a bnet $G_i$. Then
-\begin{enumerate}[(a)]
+either 
+$\calh_\rvb^\linkab=0$ or  $\calh_\rva^\linkab=0$.
+\begin{enumerate}
+\item 
+If $\calh_\rvb^\linkab=0$ and  $\calh_\rva^\linkab\neq 0$, then
+the arrow between $\rva$
+and $\rvb$ points towards $\rva$
+(i.e., towards large hospitality).
 \item
-Either 
-$\calh_\rvb^\linkab$ or  $\calh_\rva^\linkab$
-is zero
+If $\calh_\rvb^\linkab\neq 0$ and  $\calh_\rva^\linkab= 0$, then
+the arrow between $\rva$
+and $\rvb$ points towards $\rvb$
+(i.e., towards large hospitality).
 
 \item
-$\calh_\rvb^\linkab= \calh_\rva^\linkab$ implies
-there is no arrow between nodes
+If
+$\calh_\rvb^\linkab= \calh_\rva^\linkab=0$,
+then 
+there is no arrow between
 $\rva$ and $\rvb$.
 
 
@@ -874,8 +881,7 @@ $\rva$ and $\rvb$.
 \end{claim}
 \proof
 
-To prove $(a)$,
-consider Fig.\ref{fig-ha-hb}.
+Consider Fig.\ref{fig-ha-hb}.
 In that figure, $\rvn$ and $\rvs$
 might each represent multiple nodes
 of $G_i$.
@@ -890,15 +896,8 @@ and $\calh_\rva^\linkab=0$.
 If the labels $\rva$ and $\rvb$ are 
 interchanged, then 
 $\calh_\rvb^\linkab=0$.
-
-To prove $(b)$, 
-note that, since one of 
-the hospitalities 
-$\calh_\rva^\linkab$
-and 
-$\calh_\rvb^\linkab$
-must be zero, they both are zero by the hypothesis.
-Hence, there can be no arrow
+If both hospitalities 
+are zero, then there can't be any arrow
 between $\rva$ and $\rvb$.
 
 The results of this claim
@@ -915,11 +914,12 @@ All allowed values
 fall in the
 red or blue regions.
 If a point falls in
-blue region, the arrow 
+the blue region, the arrow 
 points from $\rva$ to $\rvb$,
 and if it falls in the red region,
+then
 the arrow points from $\rvb$ to $\rva$.
-If it falls at the origin,
+If it falls at the origin, then
 there is no arrow between 
 nodes $\rva$ and $\rvb$. }
 \label{fig-hospitalities-x-y}
