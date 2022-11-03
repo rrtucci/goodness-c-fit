@@ -1,6 +1,8 @@
 \documentclass[12pt]{article}
 \input{bayesuvius.sty}
 \newcommand{\tilP}[0]{\tilde{P}}
+\newcommand{\link }[0]{\text{---}}
+\newcommand{\linkab }[0]{{\rva\text{---}\rvb}}
 
 \begin{document}
 \title{Goodness of Causal Fit}
@@ -180,8 +182,12 @@ non-maximal generation $\calg(G_{pg})$.
 
 
 Henceforth, random variables
-will be indicated by underlining,
-as is done in Ref.\cite{bayesuvius}.
+will be indicated by underlining.
+Also, Pearl's do operator assignment $do(\rvx)=x$
+will be denoted by $\cald\rvx =x$.
+Both
+of these notational
+conventions are also used in Ref.\cite{bayesuvius}.
 
 \section{Goodness of Fit}
 Before trying to
@@ -353,8 +359,6 @@ $\tilP(z, a,b)$.
 From $\tilP(z, a,b)$,
 we assume that the following
 have been calculated.
-$\tilP(z,b|a)$
-$\tilP(z, a|b)$
 $\tilP(a)$, $\tilP(b)$.
 \item
 Second, we assume that a
@@ -363,9 +367,9 @@ dataset has been collected
 fixed to each of
 the possible values
 $a\in S_\rva$ of $\rva$.
-Furthemore, we assume
+Furthermore, we assume
 that the distribution
-$\tilP(z, b|do(\rva)=a)$
+$\tilP(b|\cald \rva=a)$
 has been calculated from that dataset.
 \item
 Third, we assume that a
@@ -374,49 +378,49 @@ dataset has been collected
 fixed to each of
 the possible values
 $b\in S_\rvb$ of $\rvb$.
-Furthemore, we assume that
+Furthermore, we assume that
 the distribution
-$\tilP(z, a|do(\rvb)=b)$
+$\tilP( a|\cald \rvb =b)$
 has been calculated
 from that dataset.
 \end{itemize}
 We will refer to
-$\tilP(z, b|do(\rva)=a)$
+$\tilP(b|\cald \rva=a)$
 and 
-$\tilP(z, a|do(\rvb)=b)$
-as {\bf empirical do-probabiity distributions}.
+$\tilP(a|\cald \rvb =b)$
+as {\bf empirical do-probability distributions}.
 
 
 Now define
 \beqa
-h_a&=&
-\sum_{z,b}\tilP(z,b|a)
+\calh_a^\linkab&=&
+\sum_{b}\tilP(b|\cald \rva=a)
 \ln
-\frac{\tilP(z,b|a)}
-{\tilP(z,b|do(\rva)=a)}
+\frac{\tilP(b|\cald \rva=a)}
+{\tilP(b)}
 \\
-&=&D_{KL}(\tilP(\rvz, \rvb|a)
-\parallel \tilP(\rvz, \rvb|do(\rva)=a))
+&=&D_{KL}(\tilP(\rvb|\cald \rva=a)
+\parallel \tilP(b))
 \\
-h_\rva &=& \sum_a \tilP(a) h_a
-\\&=& E_a[h_a]
+\calh_\rva^\linkab &=& \sum_a \tilP(a) \calh_a^\linkab
+\\&=& E_a[\calh_a^\linkab]
 \eeqa
 and
 
 \beqa
-h_b
+\calh_b^\linkab
 &=&
-D_{KL}(\tilP(\rvz, \rva|b)
-\parallel \tilP(\rvz, \rva|do(\rvb)=b))
+D_{KL}(\tilP(\rva|\cald\rvb=b)
+\parallel \tilP(a))
 \\
-h_\rvb 
+\calh_\rvb^\linkab 
 &=&
-\sum_a \tilP(b) h_b
-\\&=& E_b[h_b]
+\sum_a \tilP(b) \calh_b^\linkab
+\\&=& E_b[\calh_b^\linkab]
 \;.
 \eeqa
 We will
-refer to $h_\rvx$ for any node $\rvx$
+refer to $\calh_\rvx$ for any node $\rvx$
 as a {\bf hospitality}.
 Note that the 
 hospitality for node 
@@ -427,7 +431,7 @@ is ``inhospitable"), and becomes
 positive if node $\rvx$
 does have some incoming arrows
 (i.e., is ``hospitable").
-Note  $h_\rvb= h_\rva=0$ iff
+Note  $\calh_\rvb^\linkab= \calh_\rva^\linkab=0$ iff
 there is no arrow between $\rva$
 and $\rvb$.
 
@@ -436,20 +440,20 @@ Note that
 if the truth is $G_2$ with $\rva\rarrow \rvb$,
 then
 \beq
-h_a=0
+\calh_a^\linkab=0
 \text{ for all $a$ so }
-\underbrace{h_\rva}_0
-\leq h_\rvb
+\underbrace{\calh_\rva^\linkab}_0
+\leq \calh_\rvb^\linkab
 \eeq
 and
 if the truth is
  $G_1$ with $\rvb\rarrow \rva$, then
 
 \beq
-h_b=0
+\calh_b^\linkab=0
 \text{ for all $b$ so }
-h_\rva\geq 
-\underbrace{h_\rvb}_0
+\calh_\rva^\linkab\geq 
+\underbrace{\calh_\rvb^\linkab}_0
 \;.
 \eeq
 Hence, 
@@ -460,10 +464,10 @@ the larger of the 2 hospitalities
 (i.e., the arrow ``seeks the most hospitable
 node")
 
-If $h_\rva\leq  h_\rvb$, then define
+If $\calh_\rva^\linkab\leq  \calh_\rvb^\linkab$, then define
 $GCF(G_1)=-1$ and $GCF(G_2)=+1$.
 
-If $h_\rvb\leq  h_\rva$, then define
+If $\calh_\rvb^\linkab\leq  \calh_\rva^\linkab$, then define
 $GCF(G_1)=+1$ and $GCF(G_2)=-1$.
 
 
@@ -554,10 +558,11 @@ consider
 $\calg=\{G_1, G_2, G_3\}$
 given by Fig.\ref{fig-ob-eq-2}.
 
-Which of the hospitalities
-$h_{\rvx_2}$, $ h_{\rvx_1}$ and $h_{\rvx_3}$,
-is smallest, intermediate and
-highest, depends on the empirical
+The relative size of the hospitalities
+$\calh_{\rvx_2}^{\rvx_2\link \rvx_1}$, 
+$\calh_{\rvx_1}^{\rvx_2\link \rvx_1}$,
+ $\calh_{\rvx_1}^{\rvx_1\link\rvx_3}$ and $\calh_{\rvx_3}^{\rvx_1\link\rvx_3}$,
+depends on the empirical
 do-probability distributions.
 For definiteness,
 suppose the
@@ -567,17 +572,20 @@ are related as follows:
 
 
 \beq
-h_{\rvx_2}\leq  h_{\rvx_1} \leq  h_{\rvx_3}
+\calh_{\rvx_2}^{\rvx_2\link \rvx_1}\leq  \calh_{\rvx_1}^{\rvx_2\link \rvx_1}
+,\quad\quad
+ \calh_{\rvx_1}^{\rvx_1\link\rvx_3}
+ \leq  \calh_{\rvx_3}^{\rvx_1\link\rvx_3}
 \;.
 \eeq
 
 
 For any two hospitalities
-$h_\rva$ and $h_\rvb$,
+$\calh_\rva^\linkab$ and $\calh_\rvb^\linkab$,
 let
 \beq
 d_{\rvb,\rva}=
-|h_\rvb-h_\rva|
+|\calh_\rvb^\linkab-\calh_\rva^\linkab|
 \eeq
 
 If we abbreviate $\rvx_j$ by $j$
@@ -617,11 +625,11 @@ Suppose $G_i\in\calg$,
 where $\calg$ is a non-maximal generation
 of $G_{pd}$.
 In that case,
-we define a GFC measure
+we define a GCF measure
 as follows.
 Note that the
 following definition generalizes
-the definition of GFC measure 
+the definition of GCF measure 
 that was used in the 2
 special cases that
 we have considered so far.
@@ -629,37 +637,33 @@ we have considered so far.
 For any 
 bnet 
 $G_i\in\calg$
-with a node $\rva$,
-and such that $\rva^c$ are all 
-nodes of $G_i$ other than $\rva$,
-define the {\bf hospitality} $h_\rva$ by
+with a nodes $\rva$ and $\rvb$,
+define the {\bf hospitality} by
 
 \beqa
-h_a&=&
-\sum_{a^c}\tilP(a^c|a)
-\ln
-\frac{\tilP(a^c|a)}
-{\tilP(a^c|do(\rva)=a)}
+\calh_b^\linkab
+&=&
+D_{KL}(\tilP(\rva|\cald\rvb=b)
+\parallel \tilP(a))
 \\
-&=&D_{KL}(\tilP(\rva^c|a)
-\parallel \tilP(\rva^c|do(\rva)=a))
-\\
-h_\rva &=& \sum_a \tilP(a) h_a
-\\&=& E_a[h_a]
+\calh_\rvb^\linkab 
+&=&
+\sum_a \tilP(b) \calh_b^\linkab
+\\&=& E_b[\calh_b^\linkab]
+\;.
 \eeqa
 
 For any two hospitalities
-$h_\rva$ and $h_\rvb$,
+$\calh_\rva^\linkab$ and $\calh_\rvb^\linkab$,
 define the {\bf hospitality distance} by
 \beq
 d_{\rvb,\rva}=
-|h_\rvb-h_\rva|
+|\calh_\rvb^\linkab-\calh_\rva^\linkab|
 \eeq
 Note that $d_{\rvb,\rva}=0$
-iff $h_\rva=h_\rvb$.
+iff $\calh_\rva^\linkab=\calh_\rvb^\linkab$.
 See Appendix A for a proof that
-if $h_\rva=h_\rvb$ and
-there is no fine tuning, then
+if $\calh_\rva^\linkab=\calh_\rvb^\linkab$, then
 there is no arrow between
 $\rva$ and $\rvb$.
 
@@ -668,13 +672,13 @@ define
 the {\bf edge reward function} 
  by
 \beq
-\rho_{G_i}(\rva \text{---}\rvb)=
+\rho_{G_i}(\rva \link \rvb)=
 \left\{
 \begin{array}{ll}
 +1&\text{ if edge
-$\rva\text{---}\rvb$ in $G_i$
+$\rva\link \rvb$ in $G_i$
 points
-towards the larger of $h_\rva$ and $h_\rvb$.}
+towards the larger of $\calh_\rva^\linkab$ and $\calh_\rvb^\linkab$.}
 \\
 -1&\text{ otherwise}
 \end{array}
@@ -688,7 +692,7 @@ or non-maximal
 generation of
 PD graph $G_{pd}$
 with undirected edges
-$\{\rva_k\text{---}
+$\{\rva_k\link 
 \rvb_k\}_{k=0,1, \ldots, nk-1}$.
 Then 
 define the GCF of 
@@ -699,7 +703,7 @@ $G_i\in \calg$ by
 GCF(G_i)= 
 \frac{
 \sum_{k=0}^{nk-1}
-\rho_{G_i}(\rva_k\text{---}\rvb_k)
+\rho_{G_i}(\rva_k\link \rvb_k)
 d_{\rva_k, \rvb_k}
 }
 {
@@ -727,7 +731,7 @@ all the edges of the DAG from directed
 to undirected ones.
 
 So far, we 
-have applied our GFC measure
+have applied our GCF measure
  to a DAG set $\calg$
 which is
 either a maximal or 
@@ -746,7 +750,7 @@ be the frame
 which 
 is the union of 
 all edges in all $G\in \calg$.
-For each edge $\rva\text{---}\rvb$ of $F$,
+For each edge $\rva\link \rvb$ of $F$,
 if all the $G\in \calg$
 give the same direction
 to that edge, then give that direction
@@ -813,6 +817,7 @@ those of the causal model.
 
 \begin{figure}[h!]
 $$
+\begin{array}{ccc}
 \xymatrix{
 &\rvn\ar[ld]\ar[rd]\ar[dd]
 \\
@@ -823,8 +828,23 @@ $$
 &
 \rvs
 }
+&\quad&
+\xymatrix{
+&\rvn\ar[rd]\ar[dd]
+\\
+\cald\rva = a\ar[rd]
+&&\rvb
+\ar[ld]
+\\
+&
+\rvs
+}
+\\
+\\
+(A)&&\quad(B)
+\end{array}
 $$
-\caption{Bnet used 
+\caption{Bnets used 
 to prove Claim \ref{cl-ha-hb}.
 The proof is also valid if the
 direction of
@@ -840,68 +860,70 @@ are any two nodes of
 a bnet $G_i$. Then
 \begin{enumerate}[(a)]
 \item
-$h_\rvb= h_\rva$ implies
-$h_\rvb= h_\rva=0$
-or bnet $G_i$ obeys the following {\bf fine tuning}
-equations.
-\beq
-\left
-\{
-\begin{array}{l}
-H(\rva|\rvb, \rvn) =
-H(\rvb|\rvn)
-\\
-\text{$h_\rvb= h_\rva=0$ is false}
-\end{array}\right.
-\eeq
-where the $H(\cdot|\cdot)$ are
- conditional entropies
-and node $\rvn$ is defined in
-Fig.\ref{fig-ha-hb}.
+Either 
+$\calh_\rvb^\linkab$ or  $\calh_\rva^\linkab$
+is zero
+
 \item
-$h_\rvb= h_\rva=0$ implies
-$\rva$ and $\rvb$ are both root nodes and
-there is no arrow between $\rva$
-and $\rvb$.
+$\calh_\rvb^\linkab= \calh_\rva^\linkab$ implies
+there is no arrow between nodes
+$\rva$ and $\rvb$.
+
+
 \end{enumerate}
 \end{claim}
 \proof
-$(b)$ is obvious.
 
 To prove $(a)$,
 consider Fig.\ref{fig-ha-hb}.
 In that figure, $\rvn$ and $\rvs$
 might each represent multiple nodes
 of $G_i$.
-Let $\rvx$ denote all the nodes
-of $G_i$.
-Note that 
+Note that in 
+Fig.\ref{fig-ha-hb}(B),
+all paths connecting nodes $\cald \rva=a$ and 
+$\rvb$ are blocked by a collider
+so these two nodes are independent
+random variables.
+Hence, $P(b|\cald \rva=a)= P(b)$
+and $\calh_\rva^\linkab=0$.
+If the labels $\rva$ and $\rvb$ are 
+interchanged, then 
+$\calh_\rvb^\linkab=0$.
 
-\beqa
-h_\rva &=& \sum_{x}\tilP(x) 
-\ln \frac{\tilP(a^c|a)}{\tilP(a^c|do(\rva)=a)}
-\\
-&=&
-\sum_{x}\tilP(x) 
-\ln \tilP(a|b,n)
-\\
-&=&
--H(\rva|\rvb,\rvn )
-\eeqa
+To prove $(b)$, 
+note that, since one of 
+the hospitalities 
+$\calh_\rva^\linkab$
+and 
+$\calh_\rvb^\linkab$
+must be zero, they both are zero by the hypothesis.
+Hence, there can be no arrow
+between $\rva$ and $\rvb$.
 
-\beqa
-h_\rvb &=& \sum_{x}\tilP(x) 
-\ln \frac{\tilP(b^c|b)}{\tilP(b^c|do(\rvb)=b)}
-\\
-&=&
-\sum_{x}\tilP(x) 
-\ln \tilP(b|n)
-\\
-&=&
--H(\rvb|\rvn)
-\eeqa
+The results of this claim
+are represented graphically in 
+Fig.\ref{fig-hospitalities-x-y}
 \qed
-
+\begin{figure}[h!]
+\centering
+\includegraphics[width=3in]
+{hospitalities-x-y.png}
+\caption{Plot of 2 hospitalities 
+for link $\linkab$.
+All allowed values 
+fall in the
+red or blue regions.
+If a point falls in
+blue region, the arrow 
+points from $\rva$ to $\rvb$,
+and if it falls in the red region,
+the arrow points from $\rvb$ to $\rva$.
+If it falls at the origin,
+there is no arrow between 
+nodes $\rva$ and $\rvb$. }
+\label{fig-hospitalities-x-y}
+\end{figure}
 
 
 \bibliographystyle{plain}
