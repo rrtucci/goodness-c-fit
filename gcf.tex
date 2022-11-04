@@ -394,13 +394,15 @@ as {\bf empirical do-probability distributions}.
 Now define
 \beqa
 \calh_a^\linkab&=&
-\sum_{b}\tilP(b|\cald \rva=a)
+\sum_{b}\tilP(b)
 \ln
-\frac{\tilP(b|\cald \rva=a)}
+\frac
 {\tilP(b)}
+{\tilP(b|\cald \rva=a)}
 \\
-&=&D_{KL}(\tilP(\rvb|\cald \rva=a)
-\parallel \tilP(b))
+&=&D_{KL}(\tilP(\rvb)
+\parallel 
+\tilP(\rvb|\cald \rva=a))
 \\
 \calh_\rva^\linkab &=& \sum_a \tilP(a) \calh_a^\linkab
 \\&=& E_a[\calh_a^\linkab]
@@ -410,8 +412,8 @@ and
 \beqa
 \calh_b^\linkab
 &=&
-D_{KL}(\tilP(\rva|\cald\rvb=b)
-\parallel \tilP(a))
+D_{KL}(\tilP(\rva)
+\parallel \tilP(\rva|\cald\rvb=b) )
 \\
 \calh_\rvb^\linkab 
 &=&
@@ -640,8 +642,8 @@ define the {\bf hospitality of node $\rvb$} by
 \beqa
 \calh_b^\linkab
 &=&
-D_{KL}(\tilP(\rva|\cald\rvb=b)
-\parallel \tilP(a))
+D_{KL}(\tilP(\rva)
+\parallel \tilP(\rva|\cald\rvb=b))
 \\
 \calh_\rvb^\linkab 
 &=&
