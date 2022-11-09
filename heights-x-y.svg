@@ -16,7 +16,10 @@
    version="1.1"
    id="svg1731"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="hospitalities-x-y-plot.svg">
+   sodipodi:docname="heights-x-y.svg"
+   inkscape:export-filename="C:\Users\rrtuc\Desktop\backed-up\latex-projects\goodness-c-fit\heights-x-y.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs1725">
     <marker
@@ -342,7 +345,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -510,11 +513,11 @@
     </g>
     <g
        id="g2685"
-       transform="matrix(0.81520516,0,0,0.74705347,-106.25589,-44.30972)"
-       style="fill:#0000ff">
+       transform="matrix(0.81520516,0,0,0.74705347,-45.489685,-4.2634387)"
+       style="fill:#ee0008;fill-opacity:1;stroke:#f6000e;stroke-opacity:1">
       <g
          transform="matrix(1.0560469,0,0,1.0209708,118.01907,156.4839)"
-         style="fill:#0000ff;fill-opacity:1"
+         style="fill:#ee0008;fill-opacity:1;stroke:#f6000e;stroke-opacity:1"
          id="g1622">
         <use
            xlink:href="#lx-text1514-glyph3-1"
@@ -523,16 +526,16 @@
            id="use1620"
            width="100%"
            height="100%"
-           style="fill:#0000ff" />
+           style="fill:#ee0008;fill-opacity:1;stroke:#f6000e;stroke-opacity:1" />
       </g>
       <path
-         style="fill:#0000ff;stroke:#000000;stroke-width:0.41326758;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
+         style="fill:#ee0008;stroke:#f6000e;stroke-width:0.41326758;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;fill-opacity:1"
          d="m 177.35956,157.9056 h 5.56488"
          id="path1624"
          inkscape:connector-curvature="0" />
       <g
          transform="matrix(1.0560469,0,0,1.0209708,118.01907,156.4839)"
-         style="fill:#0000ff;fill-opacity:1"
+         style="fill:#ee0008;fill-opacity:1;stroke:#f6000e;stroke-opacity:1"
          id="g1628">
         <use
            xlink:href="#lx-text1514-glyph0-2"
@@ -541,11 +544,11 @@
            id="use1626"
            width="100%"
            height="100%"
-           style="fill:#0000ff" />
+           style="fill:#ee0008;fill-opacity:1;stroke:#f6000e;stroke-opacity:1" />
       </g>
       <g
          transform="matrix(1.0560469,0,0,1.0209708,118.01907,156.4839)"
-         style="fill:#0000ff;fill-opacity:1"
+         style="fill:#ee0008;fill-opacity:1;stroke:#f6000e;stroke-opacity:1"
          id="g1632">
         <use
            xlink:href="#lx-text1514-glyph3-2"
@@ -554,21 +557,21 @@
            id="use1630"
            width="100%"
            height="100%"
-           style="fill:#0000ff" />
+           style="fill:#ee0008;fill-opacity:1;stroke:#f6000e;stroke-opacity:1" />
       </g>
       <path
-         style="fill:#0000ff;stroke:#000000;stroke-width:0.41326758;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
+         style="fill:#ee0008;stroke:#f6000e;stroke-width:0.41326758;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;fill-opacity:1"
          d="M 199.28905,157.9056 H 203.802"
          id="path1634"
          inkscape:connector-curvature="0" />
     </g>
     <g
        id="g2695"
-       transform="matrix(0.81520516,0,0,0.74705347,-66.999493,-4.4549901)"
-       style="fill:#ff0000;stroke:#f6000b;stroke-opacity:1">
+       transform="matrix(0.81520516,0,0,0.74705347,-130.62825,-42.472718)"
+       style="fill:#1400f8;fill-opacity:1;stroke:#0d00ea;stroke-opacity:1">
       <g
          transform="matrix(1.0560469,0,0,1.0209708,118.01907,156.4839)"
-         style="fill:#ff0000;fill-opacity:1;stroke:#f6000b;stroke-opacity:1"
+         style="fill:#1400f8;fill-opacity:1;stroke:#0d00ea;stroke-opacity:1"
          id="g1638">
         <use
            xlink:href="#lx-text1514-glyph3-2"
@@ -577,16 +580,16 @@
            id="use1636"
            width="100%"
            height="100%"
-           style="fill:#ff0000;stroke:#f6000b;stroke-opacity:1" />
+           style="fill:#1400f8;fill-opacity:1;stroke:#0d00ea;stroke-opacity:1" />
       </g>
       <path
-         style="fill:#ff0000;stroke:#f6000b;stroke-width:0.41326758;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
+         style="fill:#1400f8;fill-opacity:1;stroke:#0d00ea;stroke-width:0.41326758;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
          d="m 207.31252,157.9056 h 4.51295"
          id="path1640"
          inkscape:connector-curvature="0" />
       <g
          transform="matrix(1.0560469,0,0,1.0209708,118.01907,156.4839)"
-         style="fill:#ff0000;fill-opacity:1;stroke:#f6000b;stroke-opacity:1"
+         style="fill:#1400f8;fill-opacity:1;stroke:#0d00ea;stroke-opacity:1"
          id="g1644">
         <use
            xlink:href="#lx-text1514-glyph0-2"
@@ -595,11 +598,11 @@
            id="use1642"
            width="100%"
            height="100%"
-           style="fill:#ff0000;stroke:#f6000b;stroke-opacity:1" />
+           style="fill:#1400f8;fill-opacity:1;stroke:#0d00ea;stroke-opacity:1" />
       </g>
       <g
          transform="matrix(1.0560469,0,0,1.0209708,118.01907,156.4839)"
-         style="fill:#ff0000;fill-opacity:1;stroke:#f6000b;stroke-opacity:1"
+         style="fill:#1400f8;fill-opacity:1;stroke:#0d00ea;stroke-opacity:1"
          id="g1648">
         <use
            xlink:href="#lx-text1514-glyph3-1"
@@ -608,10 +611,10 @@
            id="use1646"
            width="100%"
            height="100%"
-           style="fill:#ff0000;stroke:#f6000b;stroke-opacity:1" />
+           style="fill:#1400f8;fill-opacity:1;stroke:#0d00ea;stroke-opacity:1" />
       </g>
       <path
-         style="fill:#ff0000;stroke:#f6000b;stroke-width:0.41326758;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
+         style="fill:#1400f8;fill-opacity:1;stroke:#0d00ea;stroke-width:0.41326758;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
          d="m 228.1942,157.9056 h 5.56075"
          id="path1650"
          inkscape:connector-curvature="0" />

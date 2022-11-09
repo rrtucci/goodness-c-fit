@@ -29,7 +29,11 @@ and finding a
 graph $G\in {\cal G}$  with 
 a large amount 
 of both types of goodness.
-
+We have made 
+available at GitHub
+an open source Python app that implements
+our algorithm for evaluating
+$GCF(G)$ for all $G\in\calg$.
 
 \newpage
 \section{Introduction}
@@ -390,6 +394,8 @@ and
 $\tilP(a|\cald \rvb =b)$
 as {\bf empirical do-probability distributions}.
 
+ A {\bf link}
+$\linkab$ is an undirected edge between nodes $\rva$ and $\rvb$.
 
 Now define
 \beqa
@@ -422,52 +428,44 @@ D_{KL}(\tilP(\rva)
 \;.
 \eeqa
 We will
-refer to $\calh_\rvx$ for any node $\rvx$
-as the {\bf hospitality of node $\rvx$}.
-Note that the 
-hospitality for node 
-$\rvx$ is zero
-if node $\rvx$ has no incoming
-arrows (i.e., 
-is ``inhospitable"), and becomes 
-positive if node $\rvx$
-does have some incoming arrows
-(i.e., is ``hospitable").
-
+refer to $\calh_\rva^{\rva \link \rvb}$ for any node $\rva$
+as the {\bf height of node $\rva$}
+within link $\linkab$.
 
 Note that 
 if the truth is $G_2$ with $\rva\rarrow \rvb$,
 then
 \beq
-\calh_a^\linkab=0
-\text{ for all $a$ so }
-\underbrace{\calh_\rva^\linkab}_0
-\leq \calh_\rvb^\linkab
+\calh_b^\linkab=0
+\text{ for all $b$ so }
+\calh_\rva^\linkab
+\leq \underbrace{\calh_\rvb^\linkab}_0
 \eeq
 and
 if the truth is
  $G_1$ with $\rvb\rarrow \rva$, then
 
 \beq
-\calh_b^\linkab=0
-\text{ for all $b$ so }
-\calh_\rva^\linkab\geq 
-\underbrace{\calh_\rvb^\linkab}_0
+\calh_a^\linkab=0
+\text{ for all $a$ so }
+\underbrace{\calh_\rva^\linkab}_0\geq 
+\calh_\rvb^\linkab
 \;.
 \eeq
 Hence, 
 no matter what the truth is, the arrow 
 connecting nodes $\rva$
 and $\rvb$ always points towards
-the larger of the 2 hospitalities
-(i.e., the arrow ``seeks the most hospitable
-node")
+the smaller of the 2 heights.
+(mnemonic: the arrow seeks the lowest
+of the two nodes, as
+if under the influence of gravity.)
 
 If $\calh_\rva^\linkab\leq  \calh_\rvb^\linkab$, then define
-$GCF(G_1)=-1$ and $GCF(G_2)=+1$.
+$GCF(G_1)=+1$ and $GCF(G_2)=-1$.
 
 If $\calh_\rvb^\linkab\leq  \calh_\rva^\linkab$, then define
-$GCF(G_1)=+1$ and $GCF(G_2)=-1$.
+$GCF(G_1)=-1$ and $GCF(G_2)=+1$.
 
 
 
@@ -558,7 +556,7 @@ consider
 $\calg=\{G_1, G_2, G_3\}$
 given by Fig.\ref{fig-ob-eq-2}.
 
-The relative size of the hospitalities
+The relative size of the heights
 $\calh_{\rvx_2}^{\rvx_2\link \rvx_1}$, 
 $\calh_{\rvx_1}^{\rvx_2\link \rvx_1}$,
  $\calh_{\rvx_1}^{\rvx_1\link\rvx_3}$ and $\calh_{\rvx_3}^{\rvx_1\link\rvx_3}$,
@@ -566,7 +564,7 @@ depends on the empirical
 do-probability distributions.
 For definiteness,
 suppose the
-sizes of these hospitalities
+sizes of these heights
 are related as follows:
 
 
@@ -580,7 +578,7 @@ are related as follows:
 \eeq
 
 
-For any two hospitalities
+For any two heights
 $\calh_\rva^\linkab$ and $\calh_\rvb^\linkab$,
 let
 \beq
@@ -597,7 +595,7 @@ the graphs in $\calg$ by:
 \beq
 GCF(G_1)=
 \frac{
--d_{2,1} + d_{1,3}
+d_{2,1} -d_{1,3}
 }
 {d_{2,1} + d_{1,3}}
 \eeq
@@ -605,17 +603,17 @@ GCF(G_1)=
 \beq
 GCF(G_2)=
 \frac{
-d_{2,1} + d_{1,3}
+-d_{2,1} - d_{1,3}
 }
-{d_{2,1} + d_{1,3}}=1
+{d_{2,1} + d_{1,3}}=-1
 \eeq
 
 \beq
 GCF(G_3)=
 \frac{
--d_{2,1} - d_{1,3}
+d_{2,1} + d_{1,3}
 }
-{d_{2,1} + d_{1,3}}=-1
+{d_{2,1} + d_{1,3}}=1
 \eeq
 \end{subequations}
 
@@ -637,7 +635,8 @@ For any
 bnet 
 $G_i\in\calg$
 with nodes $\rva$ and $\rvb$,
-define the {\bf hospitality of node $\rvb$} by
+define the {\bf height of node $\rvb$} 
+within link $\linkab$ by
 
 \beqa
 \calh_b^\linkab
@@ -652,9 +651,9 @@ D_{KL}(\tilP(\rva)
 \;.
 \eeqa
 
-For any two hospitalities
+For any two heights
 $\calh_\rva^\linkab$ and $\calh_\rvb^\linkab$,
-define the {\bf hospitality distance} by
+define the {\bf height difference} by
 \beq
 d_{\rvb,\rva}=
 |\calh_\rvb^\linkab-\calh_\rva^\linkab|
@@ -677,7 +676,7 @@ the {\bf edge reward function}
 +1&\text{ if edge
 $\rva\link \rvb$ in $G_i$
 points
-towards the larger of $\calh_\rva^\linkab$ and $\calh_\rvb^\linkab$.}
+towards the smaller of $\calh_\rva^\linkab$ and $\calh_\rvb^\linkab$.}
 \\
 -1&\text{ otherwise}
 \end{array}
@@ -690,7 +689,7 @@ is either a maximal
 or non-maximal
 generation of
 PD graph $G_{pd}$
-with undirected edges
+with links
 $\{\rva_k\link 
 \rvb_k\}_{k=0,1, \ldots, nk-1}$.
 Then 
@@ -863,13 +862,13 @@ $\calh_\rvb^\linkab=0$ or  $\calh_\rva^\linkab=0$.
 \item 
 If $\calh_\rvb^\linkab=0$ and  $\calh_\rva^\linkab\neq 0$, then
 the arrow between $\rva$
-and $\rvb$ points towards $\rva$
-(i.e., towards large hospitality).
+and $\rvb$ points towards $\rvb$
+(i.e., towards smaller height).
 \item
 If $\calh_\rvb^\linkab\neq 0$ and  $\calh_\rva^\linkab= 0$, then
 the arrow between $\rva$
-and $\rvb$ points towards $\rvb$
-(i.e., towards large hospitality).
+and $\rvb$ points towards $\rva$
+(i.e., towards smaller height).
 
 \item
 If
@@ -898,34 +897,39 @@ and $\calh_\rva^\linkab=0$.
 If the labels $\rva$ and $\rvb$ are 
 interchanged, then 
 $\calh_\rvb^\linkab=0$.
-If both hospitalities 
+If both heights 
 are zero, then there can't be any arrow
 between $\rva$ and $\rvb$.
 
 The results of this claim
 are represented graphically in 
-Fig.\ref{fig-hospitalities-x-y}
+Fig.\ref{fig-heights-x-y}
 \qed
 \begin{figure}[h!]
 \centering
 \includegraphics[width=3in]
-{hospitalities-x-y.png}
-\caption{Plot of 2 hospitalities 
+{heights-x-y.png}
+\caption{Plot of 2 heights 
 for link $\linkab$.
 All allowed values 
 fall in the
 red or blue regions.
 If a point falls in
 the blue region, then the arrow 
-points from $\rva$ to $\rvb$,
+points from $\rvb$ to $\rva$,
 and if it falls in the red region,
 then
-the arrow points from $\rvb$ to $\rva$.
+the arrow points from $\rva$ to $\rvb$.
 If it falls at the origin, then
 there is no arrow between 
 nodes $\rva$ and $\rvb$. }
-\label{fig-hospitalities-x-y}
+\label{fig-heights-x-y}
 \end{figure}
+
+\appendix
+
+\section{Appendix: Software}
+See Ref.\cite{dag-lie-detector}
 
 
 \bibliographystyle{plain}
